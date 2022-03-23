@@ -1,9 +1,7 @@
-<script>
-</script>
+<script></script>
 
 <template>
-  <h1>Vetrix</h1>
+	<h1>Vetrix</h1>
 </template>
 
-<style>
-</style>
+<style></style>

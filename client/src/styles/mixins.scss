@@ -1,0 +1,11 @@
+@mixin todoBackground {
+  background: linear-gradient(180deg, #0F2027 0%, #203A43 50%, #10222B 100%);
+}
+
+@mixin timerBackground {
+  background: linear-gradient(180deg, #270F0F 0%, #432020 49.21%, #2B1010 100%);
+}
+
+@mixin notesBackground {
+  background: linear-gradient(180deg, #271C0F 0%, #433520 51.04%, #2B2010 100%);
+}

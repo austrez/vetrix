@@ -9,3 +9,7 @@
 @mixin notesBackground {
   background: linear-gradient(180deg, #271C0F 0%, #433520 51.04%, #2B2010 100%);
 }
+
+@mixin loginBackground {
+  background: linear-gradient(180deg, #0C1C22 4.17%, #331313 51.18%, #1B1309 100%);
+}

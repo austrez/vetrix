@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch src --exec npm run server && lint",
+    "start": "nodemon --watch src --exec npm run env && server && lint",
     "server": "node src/index.js",
+    "env": "node -r dotenv/config src/index.js",
     "lint": "eslint src --ignore-path .gitignore --ext .js,.vue --fix --no-inline-config --report-unused-disable-directives"
   },
   "author": "austrez",
@@ -13,8 +14,10 @@
   "dependencies": {
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "npm": "^8.7.0"
   },
   "devDependencies": {
     "eslint": "^8.10.0",

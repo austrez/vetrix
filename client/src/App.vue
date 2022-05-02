@@ -1,12 +1,14 @@
 <template>
-	<div class="app" :class="`app--${path}`">
+	<div class="app" :class="`app--${currentRoute}`">
 		<header class="app__header"></header>
 
-		<div class="app__content">
+		<main class="app__content">
 			<router-view />
-		</div>
+		</main>
 
-		<footer class="app__footer"></footer>
+		<footer class="app__footer">
+			<ViewSwitcher :current-route="currentRoute" :routes="routes" />
+		</footer>
 	</div>
 </template>
 
@@ -14,25 +16,31 @@
 import { ref, watch, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
+import ViewSwitcher from '@/components/ViewSwitcher.vue';
+
 export default {
-	components: {},
+	components: {
+		ViewSwitcher,
+	},
 	setup() {
 		const route = useRoute();
-		const path = ref('');
+		const currentRoute = ref('');
+		const routes = ['todo', 'timer', 'notes'];
 
 		onMounted(() => {
-			path.value = route.path.slice(1);
+			currentRoute.value = route.path.slice(1);
 		});
 
 		watch(
 			() => route.path,
 			(newPath) => {
-				path.value = newPath.slice(1);
+				currentRoute.value = newPath.slice(1);
 			}
 		);
 
 		return {
-			path,
+			currentRoute,
+			routes,
 		};
 	},
 };
@@ -48,7 +56,11 @@ export default {
 	align-items: center;
 
 	height: 100%;
-	padding: 40px 20px 0;
+	padding-top: 40px;
+
+	&__footer {
+		align-self: stretch;
+	}
 
 	&--todo {
 		@include todoBackground;

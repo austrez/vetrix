@@ -13,18 +13,22 @@ const routes = [
 	{
 		path: '/todo',
 		component: TodoView,
+		name: 'todo',
 	},
 	{
 		path: '/timer',
 		component: TimerView,
+		name: 'timer',
 	},
 	{
 		path: '/notes',
 		component: NotesView,
+		name: 'notes',
 	},
 	{
 		path: '/login',
 		component: LoginView,
+		name: 'login',
 	},
 ];
 

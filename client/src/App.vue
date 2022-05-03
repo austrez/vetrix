@@ -28,13 +28,13 @@ export default {
 		const routes = ['todo', 'timer', 'notes'];
 
 		onMounted(() => {
-			currentRoute.value = route.path.slice(1);
+			currentRoute.value = route.name;
 		});
 
 		watch(
-			() => route.path,
-			(newPath) => {
-				currentRoute.value = newPath.slice(1);
+			() => route.name,
+			(newRoute) => {
+				currentRoute.value = newRoute;
 			}
 		);
 

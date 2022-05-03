@@ -85,5 +85,17 @@ export default {
 			border-bottom: 2px solid $clr-notes;
 		}
 	}
+
+	.base-svg--todo {
+		color: $clr-todo;
+	}
+
+	.base-svg--timer {
+		color: $clr-timer;
+	}
+
+	.base-svg--notes {
+		color: $clr-notes;
+	}
 }
 </style>

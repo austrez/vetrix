@@ -1,8 +1,7 @@
 <template>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
-		class="base-svg"
-		:class="className"
+		:class="`base-svg base-svg--${iconName}`"
 		:aria-labelledby="`${iconName} icon`"
 		:viewBox="viewBox"
 		:width="width"
@@ -22,11 +21,6 @@ export default {
 			type: String,
 			default: '',
 			reqired: true,
-		},
-		className: {
-			type: String,
-			default: '',
-			reqired: false,
 		},
 		width: {
 			type: [Number, String],

@@ -4,7 +4,6 @@
 		class="base-svg"
 		:class="className"
 		:aria-labelledby="`${iconName} icon`"
-		:fill="iconColor"
 		:viewBox="viewBox"
 		:width="width"
 		:height="height"
@@ -44,11 +43,6 @@ export default {
 			default: '0 0 40 40',
 			reqired: false,
 		},
-		iconColor: {
-			type: String,
-			default: 'currentColor',
-			reqired: false,
-		},
 	},
 	setup(props) {
 		const iconPath = computed(() => `${spritePath}#${props.iconName}`);
@@ -62,5 +56,6 @@ export default {
 
 <style lang="scss" scoped>
 .base-svg {
+	fill: currentColor;
 }
 </style>

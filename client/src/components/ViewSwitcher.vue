@@ -3,9 +3,10 @@
 		<a
 			v-for="route in props.routes"
 			:key="route"
+			href=""
 			class="view-switcher__item"
 			:class="{ 'view-switcher__item--selected': props.currentRoute === route }"
-			@click="useSwitchRoute(router, `/${route}`)"
+			@click.prevent="useSwitchRoute(router, `/${route}`)"
 		>
 			<AppSvg :icon-name="route" width="40" height="40" viewBox="0 0 40 40" />
 		</a>

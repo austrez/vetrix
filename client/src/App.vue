@@ -1,6 +1,10 @@
 <template>
 	<div class="app" :class="`app--${currentRoute}`">
-		<header class="app__header"></header>
+		<header class="app__header">
+			<button aria-label="Open settings button" @click="openSettings">
+				<AppSvg icon-name="menu" />
+			</button>
+		</header>
 
 		<main class="app__content">
 			<router-view />
@@ -38,9 +42,14 @@ export default {
 			}
 		);
 
+		function openSettings() {
+			console.log('open settings');
+		}
+
 		return {
 			currentRoute,
 			routes,
+			openSettings,
 		};
 	},
 };
@@ -53,10 +62,24 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	align-items: center;
+	align-items: stretch;
 
 	height: 100%;
 	padding-top: 40px;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+
+		padding: 0 $margin-base;
+	}
+
+	&__content {
+		display: flex;
+		justify-content: center;
+
+		padding: 0 $margin-base;
+	}
 
 	&__footer {
 		align-self: stretch;

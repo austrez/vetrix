@@ -21,3 +21,11 @@ body {
     display: none;
   }
 }
+
+button {
+  padding: 0;
+  background: none;
+  border: none;
+
+  color: $clr-primary-app;
+}

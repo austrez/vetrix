@@ -28,4 +28,8 @@ button {
   border: none;
 
   color: $clr-primary-app;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

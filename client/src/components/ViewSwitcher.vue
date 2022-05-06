@@ -1,12 +1,12 @@
 <template>
-	<div class="view-switcher" :class="`view-switcher--${props.currentRoute}`">
+	<div :class="`view-switcher view-switcher--${props.currentRoute}`">
 		<a
 			v-for="route in props.routes"
 			:key="route"
 			href=""
 			class="view-switcher__item"
 			:class="{ 'view-switcher__item--selected': props.currentRoute === route }"
-			@click.prevent="useSwitchRoute(router, `/${route}`)"
+			@click.prevent="$emit('switch-route', route)"
 		>
 			<AppSvg :icon-name="route" width="40" height="40" viewBox="0 0 40 40" />
 		</a>
@@ -14,9 +14,6 @@
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
-import useSwitchRoute from '@/composables/switchRoute.js';
-
 export default {
 	props: {
 		currentRoute: {
@@ -32,10 +29,11 @@ export default {
 			required: true,
 		},
 	},
+	emits: {
+		'switch-route': (value) => typeof value === 'string',
+	},
 	setup(props) {
-		const router = useRouter();
-
-		return { props, useSwitchRoute, router };
+		return { props };
 	},
 };
 </script>

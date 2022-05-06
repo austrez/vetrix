@@ -11,7 +11,11 @@
 		</main>
 
 		<footer class="app__footer">
-			<ViewSwitcher :current-route="currentRoute" :routes="routes" />
+			<ViewSwitcher
+				:current-route="currentRoute"
+				:routes="routes"
+				@switch-route="switchRoute"
+			/>
 		</footer>
 	</div>
 </template>
@@ -19,6 +23,9 @@
 <script>
 import { ref, watch, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
+
+import useSwitchRoute from '@/composables/switchRoute.js';
 
 import ViewSwitcher from '@/components/ViewSwitcher.vue';
 
@@ -28,6 +35,8 @@ export default {
 	},
 	setup() {
 		const route = useRoute();
+		const router = useRouter();
+
 		const currentRoute = ref('');
 		const routes = ['todo', 'timer', 'notes'];
 
@@ -42,6 +51,10 @@ export default {
 			}
 		);
 
+		function switchRoute(route) {
+			useSwitchRoute(router, `/${route}`);
+		}
+
 		function openSettings() {
 			console.log('open settings');
 		}
@@ -49,6 +62,7 @@ export default {
 		return {
 			currentRoute,
 			routes,
+			switchRoute,
 			openSettings,
 		};
 	},

@@ -16,22 +16,26 @@
 				:routes="routes"
 				@switch-route="switchRoute"
 			/>
+
+			<BaseAddItemBtn v-if="isAddItemBtn" class="app__add-item-btn" />
 		</footer>
 	</div>
 </template>
 
 <script>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useRouter } from 'vue-router';
 
 import useSwitchRoute from '@/composables/switchRoute.js';
 
 import ViewSwitcher from '@/components/ViewSwitcher.vue';
+import BaseAddItemBtn from '@/components/BaseAddItemBtn.vue';
 
 export default {
 	components: {
 		ViewSwitcher,
+		BaseAddItemBtn,
 	},
 	setup() {
 		const route = useRoute();
@@ -39,6 +43,10 @@ export default {
 
 		const currentRoute = ref('');
 		const routes = ['todo', 'timer', 'notes'];
+
+		const isAddItemBtn = computed(() => {
+			return currentRoute.value === 'todo' || currentRoute.value === 'notes';
+		});
 
 		onMounted(() => {
 			currentRoute.value = route.name;
@@ -62,6 +70,7 @@ export default {
 		return {
 			currentRoute,
 			routes,
+			isAddItemBtn,
 			switchRoute,
 			openSettings,
 		};
@@ -96,11 +105,23 @@ export default {
 	}
 
 	&__footer {
-		align-self: stretch;
+		position: relative;
+	}
+
+	&__add-item-btn {
+		position: absolute;
+		left: 50%;
+		top: -130%;
+
+		transform: translateX(-50%);
 	}
 
 	&--todo {
 		@include todoBackground;
+
+		.add-item-btn {
+			background-color: $clr-todo;
+		}
 	}
 
 	&--timer {
@@ -109,6 +130,10 @@ export default {
 
 	&--notes {
 		@include notesBackground;
+
+		.add-item-btn {
+			background-color: $clr-notes;
+		}
 	}
 
 	&--login {
